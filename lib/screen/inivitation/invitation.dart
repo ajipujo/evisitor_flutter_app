@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 // import 'package:biu_project/invitation/view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uts_flutter/screen/inivitation/add.dart';
+import 'package:uts_flutter/screen/inivitation/view.dart';
 import 'package:uts_flutter/screen/sample_page.dart';
 import '../login_page.dart';
 // import 'add.dart';
@@ -137,16 +138,16 @@ class _MainInviteState extends State<MainInvite> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          // builder: (context) => View(
-                          //   id: _get[index]['id_invitation'],
-                          // ),
-                          builder: (context) => const SamplePage()),
+                        builder: (context) => View(
+                          id: _get[index]['id_invitation'],
+                        ),
+                      ),
                     );
                   },
                   child: Card(
                     color: _lightColors[index % _lightColors.length],
                     child: Container(
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -209,7 +210,7 @@ class _MainInviteState extends State<MainInvite> {
             Navigator.push(
                 context,
 //routing into add page
-                MaterialPageRoute(builder: (context) => Add()));
+                MaterialPageRoute(builder: (context) => const Add()));
           },
         ),
       ),
