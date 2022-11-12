@@ -85,15 +85,14 @@ class _PresencePageState extends State<PresencePage> {
       if (response.statusCode == 200) {
         EasyLoading.showSuccess('Image Upload Success!');
         print("Upload done");
-// Navigator.of(context)
-// .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Clocking()),
+            MaterialPageRoute(builder: (context) => const Clocking()),
             (Route<dynamic> route) => false);
         EasyLoading.dismiss();
       }
       setState(() {});
     } catch (e) {
+      EasyLoading.dismiss();
       print(e);
     }
   }
@@ -101,11 +100,9 @@ class _PresencePageState extends State<PresencePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[600],
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.green[800],
         elevation: 0,
-//leading: Icon(Icons.menu),
         title: Text("BIU"),
       ),
       body: Center(
@@ -118,7 +115,6 @@ class _PresencePageState extends State<PresencePage> {
               color: Colors.grey[200],
               child: (imageFile != null) ? Image.file(imageFile!) : SizedBox(),
             ),
-//Text('${imageFile}'),
             Container(
               child: Form(
                 key: _formKey,
@@ -254,20 +250,20 @@ class _PresencePageState extends State<PresencePage> {
                           ),
                           visible: false,
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.amber,
+                                backgroundColor: Colors.green[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  side: const BorderSide(color: Colors.white),
+                                  side: BorderSide(
+                                    color: (Colors.green[800]!),
+                                  ),
                                 ),
                                 elevation: 10,
                                 minimumSize: const Size(200, 58)),
                             onPressed: () {
-//validate
                               if (_formKey.currentState!.validate()) {
-//send data to database with this method
                                 _onUpdate(context);
                               }
                             },

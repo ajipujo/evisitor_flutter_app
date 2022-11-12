@@ -97,7 +97,8 @@ class _ClockingState extends State<Clocking> {
         username = pref.getString("username")!;
       });
       final response = await http.get(Uri.parse(
-          "https://nscis.nsctechnology.com/index.php?r=user/view-api&id='$username'"));
+          "https://nscis.nsctechnology.com/index.php?r=user/view-api&id=${username}"));
+
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
@@ -118,7 +119,7 @@ class _ClockingState extends State<Clocking> {
         username = pref.getString("username")!;
       });
       final response = await http.get(Uri.parse(
-          "https://nscis.nsctechnology.com/index.php?r=precense/user-api&id='$username'"));
+          "https://nscis.nsctechnology.com/index.php?r=precense/user-api&id=$username"));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -211,10 +212,9 @@ class _ClockingState extends State<Clocking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[600],
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.green[800],
+        elevation: 2,
         title: const Text("BIU"),
         actions: <Widget>[
           IconButton(
@@ -251,7 +251,7 @@ class _ClockingState extends State<Clocking> {
                 height: 180,
                 child: Container(
                   margin: const EdgeInsets.all(5),
-                  color: Colors.grey[600],
+                  color: Colors.white,
                   child: precenseUser.isEmpty
                       ? const Center(
                           child: Text(
@@ -367,10 +367,12 @@ class _ClockingState extends State<Clocking> {
                 child: Center(
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Colors.green[800],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        side: const BorderSide(color: Colors.white),
+                        side: BorderSide(
+                          color: (Colors.green[800])!,
+                        ),
                       ),
                       elevation: 10,
                       minimumSize: const Size(200, 58),

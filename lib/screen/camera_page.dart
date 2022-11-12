@@ -4,7 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'presence_page.dart';
+import './presence_page.dart';
 
 class CameraPage extends StatefulWidget {
   LatLng? iniPosition;
@@ -35,7 +35,6 @@ class _CameraPageState extends State<CameraPage> {
   Void? dispose() {
     controller!.dispose();
     super.dispose();
-    return null;
   }
 
   Future<File?> takePicture() async {
@@ -56,7 +55,7 @@ class _CameraPageState extends State<CameraPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: FutureBuilder(
           future: initializeCamera(),
@@ -97,6 +96,8 @@ class _CameraPageState extends State<CameraPage> {
                                   // shape: const CircleBorder(),
                                   // color: Colors.blue,
                                   child: const Icon(Icons.camera),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.green[800]),
                                 ),
                               ),
                             ),

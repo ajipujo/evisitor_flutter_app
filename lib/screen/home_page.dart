@@ -137,15 +137,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[600],
+      // backgroundColor: Colors.grey[600],
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: const Icon(Icons.menu),
-        title: const Text("BIU"),
+        backgroundColor: Colors.green[800],
+        elevation: 3,
+        leading: const Icon(
+          Icons.menu,
+          color: Colors.white,
+        ),
+        title: const Text(
+          "BIU E-Visitor",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
             onPressed: () {
               logOut();
             },
@@ -161,11 +173,11 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 height: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/background1.jpg'),
-                      fit: BoxFit.cover),
-                ),
+                    borderRadius: BorderRadius.circular(20),
+                    // image: DecorationImage(
+                    //     image: AssetImage('assets/images/background1.jpg'),
+                    //     fit: BoxFit.cover),
+                    color: const Color(0xff2C62FF)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -209,11 +221,21 @@ class _HomePageState extends State<HomePage> {
                               );
                               setState(() {});
                             },
-                            icon: const Icon(Icons.arrow_right_alt),
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.white),
+                            ),
+                            icon: const Icon(
+                              Icons.arrow_right_alt,
+                              color: Color(0xff2C62FF),
+                            ),
                             label: const Text(
                               "Clocking",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff2C62FF),
+                              ),
                             ),
                           ),
                         ),
@@ -268,7 +290,7 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey,
+                            color: Color(0xffFF5E5B),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -276,14 +298,18 @@ class _HomePageState extends State<HomePage> {
                               Icon(
                                 Icons.insert_invitation,
                                 size: 50,
-                                color: Colors.amber,
+                                color: Colors.white,
                               ),
                               SizedBox(
-                                height: 3,
+                                height: 6,
                               ),
                               Text(
                                 "Invitation",
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ],
                           ),
@@ -303,7 +329,16 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey,
+                            color: Color(0xffFBB41A),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 7,
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -311,14 +346,18 @@ class _HomePageState extends State<HomePage> {
                               Icon(
                                 Icons.qr_code_scanner,
                                 size: 50,
-                                color: Colors.amber,
+                                color: Colors.white,
                               ),
                               SizedBox(
-                                height: 3,
+                                height: 6,
                               ),
                               Text(
                                 "Scanner",
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ],
                           ),
@@ -338,7 +377,16 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey,
+                            color: Color(0xFF2BC999),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 7,
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -346,14 +394,18 @@ class _HomePageState extends State<HomePage> {
                               Icon(
                                 Icons.file_copy_outlined,
                                 size: 50,
-                                color: Colors.amber,
+                                color: Colors.white,
                               ),
                               SizedBox(
-                                height: 3,
+                                height: 6,
                               ),
                               Text(
                                 "Data Visit",
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ],
                           ),
