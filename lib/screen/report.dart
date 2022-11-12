@@ -95,7 +95,7 @@ class _ReportState extends State<Report> {
         username = pref.getString("username")!;
       });
       final response = await http.get(Uri.parse(
-          "https://nscis.nsctechnology.com/index.php?r=precense/list-api&id='${username}'"));
+          "https://nscis.nsctechnology.com/index.php?r=precense/list-api&id=${username}"));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);

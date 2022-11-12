@@ -4,6 +4,7 @@ import 'dart:convert';
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uts_flutter/screen/clocking.dart';
+import 'package:uts_flutter/screen/inivitation/invitation.dart';
 import 'package:uts_flutter/screen/login_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:uts_flutter/screen/report.dart';
@@ -121,7 +122,7 @@ class _HomePageState extends State<HomePage> {
       });
       final response = await http.get(
         Uri.parse(
-            "https://nscis.nsctechnology.com/index.php?r=precense/user-api&id='${username}'"),
+            "https://nscis.nsctechnology.com/index.php?r=precense/user-api&id=${username}"),
       );
 
       if (response.statusCode == 200) {
@@ -282,8 +283,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              // builder: (_) => MainInvite(),
-                              builder: (_) => const SamplePage(),
+                              builder: (_) => MainInvite(),
+                              // builder: (_) => const SamplePage(),
                             ),
                           );
                           setState(() {});
