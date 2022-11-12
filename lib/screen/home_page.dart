@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uts_flutter/screen/clocking.dart';
 import 'package:uts_flutter/screen/login_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:uts_flutter/screen/report.dart';
 import 'package:uts_flutter/screen/sample_page.dart';
 
 // class HomePage extends StatelessWidget {
@@ -413,16 +414,38 @@ class _HomePageState extends State<HomePage> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              // builder: (_) => Report(),
-                              builder: (_) => const SamplePage(),
-                            ),
-                          );
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => Report()));
                           setState(() {});
                         },
-                      )
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color(0xff2C62FF),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.manage_history,
+                                size: 50,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                "Attendance",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
