@@ -10,7 +10,6 @@ import 'package:uts_flutter/screen/camera_page.dart';
 import 'package:uts_flutter/screen/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:uts_flutter/screen/sample_page.dart';
 
 class Clocking extends StatefulWidget {
   const Clocking({super.key});

@@ -4,7 +4,7 @@ import 'screen/splash_screen.dart';
 
 void main() {
   configLoading();
-  return runApp(MyApp());
+  return runApp(const MyApp());
 }
 
 void configLoading() {

@@ -8,7 +8,8 @@ import 'package:uts_flutter/screen/inivitation/invitation.dart';
 import 'package:uts_flutter/screen/login_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:uts_flutter/screen/report.dart';
-import 'package:uts_flutter/screen/sample_page.dart';
+import 'package:uts_flutter/screen/scan/report_visit.dart';
+import 'package:uts_flutter/screen/scan/scanner.dart';
 
 // class HomePage extends StatelessWidget {
 //   const HomePage({super.key});
@@ -322,8 +323,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              // builder: (_) => const QRViewExample(),
-                              builder: (_) => const SamplePage(),
+                              builder: (_) => const QRViewExample(),
                             ),
                           );
                           setState(() {});
@@ -370,8 +370,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              // builder: (_) => ReportVisit(),
-                              builder: (_) => const SamplePage(),
+                              builder: (_) => const ReportVisit(),
                             ),
                           );
                           setState(() {});

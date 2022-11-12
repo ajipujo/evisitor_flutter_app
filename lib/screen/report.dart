@@ -60,7 +60,7 @@ class _ReportState extends State<Report> {
   @override
   void initState() {
     super.initState();
-//in first time, this method will be executed _getData();
+    _getData();
     getPref();
     _getPrecence();
   }

@@ -1,21 +1,19 @@
 import 'dart:convert';
-import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uts_flutter/screen/inivitation/add.dart';
-import 'package:uts_flutter/screen/inivitation/view.dart';
-import '../login_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:uts_flutter/screen/login_page.dart';
 
-class MainInvite extends StatefulWidget {
-  const MainInvite({super.key});
+class ReportVisit extends StatefulWidget {
+  const ReportVisit({super.key});
 
   @override
-  State<MainInvite> createState() => _MainInviteState();
+  State<ReportVisit> createState() => _ReportVisitState();
 }
 
-class _MainInviteState extends State<MainInvite> {
+class _ReportVisitState extends State<ReportVisit> {
   String id = "";
   String username = "";
   List _get = [];
@@ -54,12 +52,31 @@ class _MainInviteState extends State<MainInvite> {
     );
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text(
-          "Berhasil logout",
-          style: TextStyle(fontSize: 16),
-        ),
-      ),
+          content: Text(
+        "Berhasil logout",
+        style: TextStyle(fontSize: 16),
+      )),
     );
+  }
+
+  _getData() async {
+    try {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      var islogin = pref.getBool("is_login");
+      setState(() {
+        username = pref.getString("username")!;
+      });
+      final response = await http.get(Uri.parse(
+          "https://nscis.nsctechnology.com/index.php?r=t-visitor/visitor-api&id=$username"));
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          _get = data;
+        });
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   final _lightColors = [
@@ -79,42 +96,21 @@ class _MainInviteState extends State<MainInvite> {
   @override
   void initState() {
     super.initState();
+    getPref();
     _getData();
-  }
-
-  Future _getData() async {
-    try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      var islogin = pref.getBool("is_login");
-      setState(() {
-        username = pref.getString("username")!;
-      });
-
-      final response = await http.get(Uri.parse(
-          "https://nscis.nsctechnology.com/index.php?r=t-invitation/invitation-api&id=$username"));
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        setState(() {
-          _get = data;
-        });
-      }
-    } catch (e) {
-      print(e);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.grey[600],
       appBar: AppBar(
         backgroundColor: Colors.green[800],
-        elevation: 0,
-//leading: Icon(Icons.menu),
+        elevation: 2,
         title: const Text(
           "BIU",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         actions: <Widget>[
           IconButton(
@@ -131,16 +127,6 @@ class _MainInviteState extends State<MainInvite> {
               itemCount: _get.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => View(
-                          id: _get[index]['id_invitation'],
-                        ),
-                      ),
-                    );
-                  },
                   child: Card(
                     color: _lightColors[index % _lightColors.length],
                     child: Container(
@@ -149,32 +135,16 @@ class _MainInviteState extends State<MainInvite> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Date: ${_get[index]['schedule_date']}',
+                            'Name: ${_get[index]['full_name']}',
                             style: const TextStyle(color: Colors.black),
                           ),
                           Text(
-                            'Time: ${_get[index]['time_schedule']}',
+                            'Company: ${_get[index]['company']}',
                             style: const TextStyle(color: Colors.black),
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Invitation Code: ${_get[index]['invitation_code']}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
                             'Status: ${_get[index]['status']}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Desc: ${_get[index]['description']}',
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -192,25 +162,11 @@ class _MainInviteState extends State<MainInvite> {
               child: Text(
                 "No Data Available",
                 style: TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50.0),
-        child: FloatingActionButton.extended(
-          backgroundColor: Colors.green[800],
-          elevation: 4.0,
-          icon: const Icon(Icons.add_rounded),
-          label: const Text('Add Guest'),
-          onPressed: () {
-            Navigator.push(
-                context,
-//routing into add page
-                MaterialPageRoute(builder: (context) => const Add()));
-          },
-        ),
-      ),
     );
   }
 }
